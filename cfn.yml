@@ -19,8 +19,8 @@ Resources:
       SecurityGroupIds: 
         - !Ref mySecGrp
       Tags: 
-        Key: Name
-        Value: !Sub Web Server of ${AWS::StackName} Stack
+        - Key: Name
+          Value: !Sub Web Server of ${AWS::StackName} Stack
       UserData: !Base64 
         #! /bin/bash
         yum update -y
@@ -29,9 +29,9 @@ Resources:
         pip3 install flask
         yum install git -y
         cd /home/ec2-user
-        wget -P templates https://raw.githubusercontent.com/Hasan-ilker/roman-converter/main/templates/index.htmll
+        wget -P templates https://raw.githubusercontent.com/Hasan-ilker/roman-converter/main/templates/index.html
         wget -P templates https://raw.githubusercontent.com/Hasan-ilker/roman-converter/main/templates/result.html
-        wget https://raw.githubusercontent.com/Hasan-ilker/roman-converter/main/roman-numerals-converter-app.py
+        wget https://raw.githubusercontent.com/Hasan-ilker/roman-converter/main/app.py
         python3 app.py
   mySecGrp:
       Type: AWS::EC2::SecurityGroup
